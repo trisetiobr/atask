@@ -1,0 +1,30 @@
+<!-- app/views/transactions/_form.html.erb -->
+<%= form_with(model: @payment_transaction, local: true) do |form| %>
+  <% if @payment_transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment_transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <ul>
+        <% @payment_transaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :amount %>
+    <%= form.number_field :amount, class: 'form-control', step: '0.01' %>
+  </div>
+
+
+  <div class="form-group">
+    <%= form.label :subject_id, 'Subject:' %>
+    <%= form.select :subject_id, options_for_select(@subjects.map { |s| [s.id.to_s + " - " + s.subjectable_type + " - " + s.name.upcase, s.id] }), {}, class: 'form-control' %>
+
+  </div>
+
+  <div class="form-group">
+    <%= link_to "Cancel", dashboard_path, class: "btn btn-primary" %>
+    <%= form.submit 'Create Transaction', class: 'btn btn-primary' %>
+  </div>
+<% end %>

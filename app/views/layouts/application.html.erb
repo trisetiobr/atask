@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestApplication</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  </head>
+
+  <body>
+
+  <div class="container-fluid">
+    <div class="row">
+    
+    <% if flash[:alert].present? %>
+  <script>
+    alert('<%= j flash[:alert] %>');
+  </script>
+<% end %>
+      <div class="col-sm-1">&nbsp;</div>
+      <div class="col-sm-10">
+      <%= yield %>
+      </div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+    <!-- Add the Bootstrap JS and jQuery CDN links at the end of the body -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

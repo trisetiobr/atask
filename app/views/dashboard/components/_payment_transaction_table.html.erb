@@ -1,0 +1,29 @@
+<% if @payment_transactions.any? %>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Date</th>
+        <th>Transaction Type</th>
+        <th>Amount</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payment_transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.transaction_time %></td>
+          <td><%= transaction.transaction_type %></td>
+          <td>
+          <% if transaction.transaction_type == 'credit' %>
+            + <%= transaction.amount %></td>
+          <% else %>
+            - <%= transaction.amount %></td>
+          <% end %>
+          <td><%= transaction.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No transactions found.</p>
+<% end %>

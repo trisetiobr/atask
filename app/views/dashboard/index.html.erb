@@ -1,0 +1,13 @@
+<!-- app/views/users/dashboard.html.erb -->
+<h1>Profile <%= "Team: " + @user.team.name + " - " + @subject.subjectable_type + " " + @subject.name %></h1>
+
+<h3>Balance: <%= @balance %></h3>
+<br>
+<%= link_to "New Transaction", new_payment_transaction_path, class: "btn btn-primary" %>
+<%= link_to "Withdraw", new_withdraw_path, class: "btn btn-success" %>
+<%= link_to "Deposit", new_deposit_path, class: "btn btn-success" %>
+<%= link_to "Logout", logout_path, class: "btn btn-danger" %>
+<br>
+<h3>Transaction List</h3>
+
+<%= render partial: 'dashboard/components/payment_transaction_table', locals: { payment_transactions: @payment_transactions } %>
